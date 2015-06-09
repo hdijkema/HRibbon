@@ -84,12 +84,13 @@ public class HRibbonBand extends JPanel {
 			newGroup();
 			p_current_group.add(button, "growy");
 			finishGroup();
+			button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "growx, wrap");
+			button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
-		button.setBorder(BorderFactory.createEmptyBorder(2,4,2,4));
 		button.setFocusable(false);
 	}
 	
@@ -100,12 +101,13 @@ public class HRibbonBand extends JPanel {
 			newGroup();
 			p_current_group.add(button, "growy");
 			finishGroup();
+			button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "align left, growx, wrap");
+			button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
-		button.setBorder(BorderFactory.createEmptyBorder(2,4,2,4));
 		button.setFocusable(false);
 	}
 	
@@ -116,15 +118,18 @@ public class HRibbonBand extends JPanel {
 			newGroup();
 			p_current_group.add(b, "growy");
 			finishGroup();
+			b.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			p_current_group.add(b, "growx, wrap");
+			b.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				m.show(b, 0, b.getHeight());
 			}
 		});	
+		b.setFocusable(false);
 	}
 	
 	public JToggleButton addToggleButton(String task, String imageName, String text, String tooltip, String command, ActionListener l, int priority) {
