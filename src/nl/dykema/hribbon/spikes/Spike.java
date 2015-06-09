@@ -15,10 +15,13 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import org.pushingpixels.substance.api.skin.SubstanceNebulaLookAndFeel;
+
 import net.miginfocom.swing.MigLayout;
 import nl.dykema.hribbon.HRibbon;
 import nl.dykema.hribbon.HRibbonBand;
 import nl.dykema.hribbon.HRibbonTask;
+import nl.dykema.hribbon.utils.CorrectDPILaf;
 import nl.dykema.hribbon.utils.IconFactory;
 
 class _ {
@@ -45,12 +48,17 @@ public class Spike {
 			
 			public void run() {
 			    try {
-			    	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			    		
+			    	   /* for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 			    	        if ("Nimbus".equals(info.getName())) {
 			    	            UIManager.setLookAndFeel(info.getClassName());
+			    	            //CorrectDPILaf.correctLafForDPI();
+			    	            //SwingUtilities.updateComponentTreeUI(null);
 			    	            break;
 			    	        }
-			    	    }
+			    	    }*/
+    				UIManager.setLookAndFeel(SubstanceNebulaLookAndFeel.class.getName());
+
 			    } catch(Exception e) {
 			    }	
 			      

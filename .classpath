@@ -3,5 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/miglayout-4.0-swing.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/zc3/libraries/insubstantial/laf-plugin-7.1.jar"/>
+	<classpathentry kind="lib" path="/zc3/libraries/insubstantial/laf-widget-7.1.jar" sourcepath="/insubstantial/laf-widget/src"/>
+	<classpathentry kind="lib" path="/zc3/libraries/insubstantial/substance-7.1.jar" sourcepath="/insubstantial/substance/src"/>
+	<classpathentry kind="lib" path="/zc3/libraries/insubstantial/trident-7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

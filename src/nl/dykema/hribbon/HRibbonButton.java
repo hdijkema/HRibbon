@@ -8,8 +8,8 @@ public class HRibbonButton extends JButton {
 	private static final long serialVersionUID = 1L;
 
 	private void init() {
-		super.setBorderPainted(false);
-		super.setFocusPainted(false);
+		//super.setBorderPainted(false);
+		//super.setFocusPainted(false);
 		//super.setContentAreaFilled(false);
 		//super.setRolloverEnabled(true);
 	}
