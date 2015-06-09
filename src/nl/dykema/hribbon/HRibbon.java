@@ -62,6 +62,7 @@ public class HRibbon extends JTabbedPane {
 				if (r != null) { r.run(); }
 			}
 		});
+		super.setFocusable(false);
 	}
 
 

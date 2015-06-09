@@ -20,19 +20,20 @@ public class HRibbonTask extends JPanel {
 	}
 	
 	public void addBand(HRibbonBand band) {
-		super.add(band, "align left");
+		super.add(band, "align left, growy");
 	}
 	
 	public HRibbonTask() {
-		super.setLayout(new MigLayout("insets 0, gap 0"));
+		super.setLayout(new MigLayout("insets 0, gap 0, filly"));
 	}
 
 	public HRibbonTask(String t, HRibbonBand... bands) {
-		super.setLayout(new MigLayout("debug, insets 0, gap 0"));
+		super.setLayout(new MigLayout("insets 0, gap 3, filly"));
 		s_title = t;
 		for(HRibbonBand band: bands) {
+			band.finishGroup();
 			addBand(band);
 		}
-		super.add(new JLabel("hi"), "growx");
+		super.setFocusable(false);
 	}
 }
