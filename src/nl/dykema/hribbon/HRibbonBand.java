@@ -24,8 +24,9 @@ import nl.dykema.hribbon.utils.IconFactory;
 public class HRibbonBand extends JPanel {
 
 	public interface Priority {
-		final static int TOP = 1;
+		static final int TOP = 1;
 		static final int MEDIUM = 2;
+		static final int LOW = 2;
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -139,7 +140,12 @@ public class HRibbonBand extends JPanel {
 		b.setName(command);
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
 		b.setIcon(icn);
-		b.addActionListener(l);
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ActionEvent n = new ActionEvent(e.getSource(), e.getID(), b.getName(), e.getWhen(), e.getModifiers());
+				l.actionPerformed(n);
+			}
+		});
 		addToggleButton(b, priority);
 		return b;
 	}
@@ -161,7 +167,12 @@ public class HRibbonBand extends JPanel {
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
 		b.setIcon(icn);
 		b.setToolTipText(tooltip);
-		b.addActionListener(l);
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ActionEvent n = new ActionEvent(e.getSource(), e.getID(), b.getName(), e.getWhen(), e.getModifiers());
+				l.actionPerformed(n);
+			}
+		});
 		addButton(b, priority);
 	}
 

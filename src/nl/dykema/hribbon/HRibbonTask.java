@@ -19,8 +19,22 @@ public class HRibbonTask extends JPanel {
 		s_title = t;
 	}
 	
+	private boolean bandExists(HRibbonBand b) {
+		int i, N;
+		for (i = 0, N = super.getComponentCount(); i < N; i++) {
+			if (super.getComponent(i) == b) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void addBand(HRibbonBand band) {
-		super.add(band, "align left, growy");
+		if (!bandExists(band)) { super.add(band, "align left, growy"); super.repaint(); }
+	}
+	
+	public void removeBand(HRibbonBand band) {
+		if (bandExists(band)) { super.remove(band); super.repaint(); }
 	}
 	
 	public HRibbonTask() {
