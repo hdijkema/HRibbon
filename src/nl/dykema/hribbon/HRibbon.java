@@ -1,8 +1,10 @@
 package nl.dykema.hribbon;
 
+import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
@@ -63,6 +65,7 @@ public class HRibbon extends JTabbedPane {
 			}
 		});
 		super.setFocusable(false);
+		super.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, SystemColor.activeCaptionBorder));
 	}
 
 

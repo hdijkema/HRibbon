@@ -2,6 +2,7 @@ package nl.dykema.hribbon;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,9 @@ public class HRibbonBand extends JPanel {
 	
 	public void setTitle(String s) {
 		s_title = s;
-		l_title.setText("<html><b><small>" + s_title + "</small></b></html>");
+		int size = (int) (l_title.getFont().getSize() * 0.9f);
+		System.out.println(size);
+		l_title.setText("<html><font size="+size+"pt>" + s_title + "</font></html>");
 		l_title.setHorizontalAlignment(SwingConstants.CENTER);
 		
 	}
@@ -50,6 +53,18 @@ public class HRibbonBand extends JPanel {
 		if (p_current_group == null) {
 			newGroup();
 		}
+	}
+	
+	public void addComponent(Component c, int priority) {
+		if (priority == Priority.TOP) {
+			newGroup();
+			p_current_group.add(c, "growy");
+			finishGroup();
+		} else {
+			newGroupIfNecessary();
+			p_current_group.add(c, "growx, wrap");
+		}
+		c.setFocusable(false);
 	}
 	
 	public void addButton(HRibbonButton button, int priority) {
@@ -148,6 +163,10 @@ public class HRibbonBand extends JPanel {
 
 	public void addButton(String task, String imageName, String text, String tooltip, String command, ActionListener l) {
 		addButton(task, imageName, text, tooltip, command, l, Priority.TOP);
+	}
+
+	public void addToggleButton(String task, String imageName, String text, String tooltip, String command, ActionListener l) {
+		addToggleButton(task, imageName, text, tooltip, command, l, Priority.TOP);
 	}
 
 	public void newGroup() {

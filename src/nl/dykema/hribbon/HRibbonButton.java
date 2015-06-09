@@ -12,6 +12,7 @@ public class HRibbonButton extends JButton {
 		//super.setFocusPainted(false);
 		//super.setContentAreaFilled(false);
 		//super.setRolloverEnabled(true);
+		super.setBorderPainted(false);
 	}
 	
 	public HRibbonButton() {

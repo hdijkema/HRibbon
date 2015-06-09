@@ -8,9 +8,6 @@ public class HRibbonToggleButton extends JToggleButton {
 	private static final long serialVersionUID = 1L;
 
 	private void init() {
-		super.setBorderPainted(false);
-		super.setFocusPainted(false);
-		super.setContentAreaFilled(false);
 	}
 
 	public HRibbonToggleButton() {

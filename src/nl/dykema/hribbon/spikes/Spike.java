@@ -2,27 +2,22 @@ package nl.dykema.hribbon.spikes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
 
-import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-
-import org.pushingpixels.substance.api.skin.SubstanceNebulaLookAndFeel;
 
 import net.miginfocom.swing.MigLayout;
 import nl.dykema.hribbon.HRibbon;
 import nl.dykema.hribbon.HRibbonBand;
 import nl.dykema.hribbon.HRibbonTask;
-import nl.dykema.hribbon.utils.CorrectDPILaf;
-import nl.dykema.hribbon.utils.IconFactory;
+
+import org.pushingpixels.substance.api.skin.SubstanceOffice2013LookAndFeel;
 
 class _ {
 	static public String t(String txt) { return txt; }
@@ -48,23 +43,16 @@ public class Spike {
 			
 			public void run() {
 			    try {
-			    		
-			    	   /* for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-			    	        if ("Nimbus".equals(info.getName())) {
-			    	            UIManager.setLookAndFeel(info.getClassName());
-			    	            //CorrectDPILaf.correctLafForDPI();
-			    	            //SwingUtilities.updateComponentTreeUI(null);
-			    	            break;
-			    	        }
-			    	    }*/
-    				UIManager.setLookAndFeel(SubstanceNebulaLookAndFeel.class.getName());
+			    	UIManager.setLookAndFeel(new SubstanceOffice2013LookAndFeel());
 
 			    } catch(Exception e) {
+			    	e.printStackTrace();
 			    }	
 			      
 				
 				_frame=new JFrame();
 				_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				_frame.setTitle("Dit is de title");;
 				
 				JPanel p=new JPanel();
 				p.setLayout(new MigLayout("insets 0, fill")); 
@@ -75,6 +63,8 @@ public class Spike {
 				patientenBand.addButton("Patienten", "consult-open", _.t("_Open een\nconsult"), _.t("Open een consult."), "consult-open", l);
 				patientenBand.addButton("Patienten", "consult-new",  _.t("_Nieuw\nconsult"),  _.t("Maak een nieuw consult aan."), "consult-new", l);
 				patientenBand.addButton("Patienten", "consult-remove", _.t("_Verwijder\nconsult."), _.t("Verwijder een consult"), "consult-remove", l);
+				patientenBand.addToggleButton("Patienten", "rep-new", _.t("even kijken"), _.t("tooltip"), "rep-new", l);
+				patientenBand.addComponent(new JButton("Test"), HRibbonBand.Priority.TOP);
 
 				HRibbonBand main = new HRibbonBand("main", "nl.dykema.hribbon.resources");
 				main.addButton("main", "save", _.t("Op_slaan"), _.t("Sla de wijzigingen van een patient of casus op."), "save", l);
