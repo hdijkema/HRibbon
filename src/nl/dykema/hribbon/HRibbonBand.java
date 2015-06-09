@@ -27,31 +27,6 @@ public class HRibbonBand extends JPanel {
 		static final int MEDIUM = 2;
 	}
 	
-	private class MenuLabel extends JButton {
-
-		private static final long serialVersionUID = 1L;
-		
-		JLabel _label=new JLabel();
-		
-		public MenuLabel(String txt, Icon icn) {
-			this(new JLabel(txt), icn);
-		}
-		
-		protected MenuLabel(JLabel l, Icon icn) {
-			super.setLayout(new BorderLayout());
-			_label = l;
-			Dimension d = _label.getPreferredSize();
-			_label.setPreferredSize(d);
-			super.add(_label, BorderLayout.CENTER);
-			ExpandIcon e=new ExpandIcon();
-			e.translateY(2);e.translateX(2);
-			super.add(new JLabel(e), BorderLayout.EAST);
-			JLabel icon = new JLabel(icn);
-			icon.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 3));
-			if (icn != null) { super.add(icon, BorderLayout.WEST); }
-		}
-	}	
-	
 	private static final long serialVersionUID = 1L;
 	
 	private String s_title;
@@ -77,58 +52,53 @@ public class HRibbonBand extends JPanel {
 		}
 	}
 	
-	public void addButton(JButton button, int priority) {
+	public void addButton(HRibbonButton button, int priority) {
 		if (priority == Priority.TOP) {
 		    button.setVerticalTextPosition(SwingConstants.BOTTOM);
 		    button.setHorizontalTextPosition(SwingConstants.CENTER);		
 			newGroup();
 			p_current_group.add(button, "growy");
 			finishGroup();
-			button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+			//button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "growx, wrap");
-			button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+			//button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		button.setFocusable(false);
 	}
 	
-	public void addToggleButton(JToggleButton button, int priority) {
+	public void addToggleButton(HRibbonToggleButton button, int priority) {
 		if (priority == Priority.TOP) {
 		    button.setVerticalTextPosition(SwingConstants.BOTTOM);
 		    button.setHorizontalTextPosition(SwingConstants.CENTER);		
 			newGroup();
 			p_current_group.add(button, "growy");
 			finishGroup();
-			button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+			//button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "align left, growx, wrap");
-			button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+			//button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		button.setFocusable(false);
 	}
 	
 	public void addMenu(String label, String imageName, final JPopupMenu m, int priority) {
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
-		MenuLabel b = new MenuLabel(label, icn);
+		HRibbonMenuButton b = new HRibbonMenuButton(label, icn, m);
 		if (priority == Priority.TOP) {
 			newGroup();
 			p_current_group.add(b, "growy");
 			finishGroup();
-			b.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+			//b.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else {
 			newGroupIfNecessary();
 			p_current_group.add(b, "growx, wrap");
-			b.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+			//b.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
-		b.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				m.show(b, 0, b.getHeight());
-			}
-		});	
 		b.setFocusable(false);
 	}
 	
@@ -142,7 +112,7 @@ public class HRibbonBand extends JPanel {
 		text = text.replace("#", "<br />");
 		text = text.replace("\n", "<br />");
 		text = "<html><center>" + text + "</center></html>";
-		JToggleButton b=new JToggleButton(text);
+		HRibbonToggleButton b=new HRibbonToggleButton(text);
 	    b.setVerticalTextPosition(SwingConstants.BOTTOM);
 	    b.setHorizontalTextPosition(SwingConstants.CENTER);		
 		if (mnemonic!=null) { b.setMnemonic(mnemonic.charAt(0)); }
@@ -166,7 +136,7 @@ public class HRibbonBand extends JPanel {
 		text = text.replace("#", "<br />");
 		text = text.replace("\n", "<br />");
 		text = "<html><center>" + text + "</center></html>";
-		JButton b=new JButton(text);
+		HRibbonButton b=new HRibbonButton(text);
 		if (mnemonic!=null) { b.setMnemonic(mnemonic.charAt(0)); }
 		b.setName(command);
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);

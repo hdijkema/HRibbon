@@ -45,13 +45,12 @@ public class Spike {
 			
 			public void run() {
 			    try {
-			    		UIManager.setLookAndFeel("nl.dykema.plaf.simple.FastLookAndFeel");
-			    	    /*for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+			    	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 			    	        if ("Nimbus".equals(info.getName())) {
 			    	            UIManager.setLookAndFeel(info.getClassName());
 			    	            break;
 			    	        }
-			    	    }*/
+			    	    }
 			    } catch(Exception e) {
 			    }	
 			      
