@@ -101,9 +101,7 @@ public class HRibbonBand extends JPanel {
 		button.setFocusable(false);
 	}
 	
-	public void addMenu(String label, String imageName, final JPopupMenu m, int priority) {
-		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
-		HRibbonMenuButton b = new HRibbonMenuButton(label, icn, m);
+	public void addMenu(HRibbonMenuButton b, final JPopupMenu m, int priority) {
 		if (priority == Priority.TOP) {
 			newGroup();
 			p_current_group.add(b, "growy");
@@ -115,6 +113,12 @@ public class HRibbonBand extends JPanel {
 			//b.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		b.setFocusable(false);
+	}
+	
+	public void addMenu(String label, String imageName, final JPopupMenu m, int priority) {
+		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
+		HRibbonMenuButton b = new HRibbonMenuButton(label, icn, m);
+		addMenu(b, m, priority);
 	}
 	
 	public JToggleButton addToggleButton(String task, String imageName, String text, String tooltip, String command, ActionListener l, int priority) {
