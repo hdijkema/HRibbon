@@ -12,6 +12,5 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=HRibbon/src"/>
-        <folder path="/HRibbon/libs"/>
     </selectedElements>
 </jardesc>
