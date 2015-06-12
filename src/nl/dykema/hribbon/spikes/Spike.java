@@ -100,9 +100,17 @@ public class Spike {
 				mn.add(mi1);
 				mn.add(mi2);
 				mn.add(mi3);
-				ffBand.addButton("FF", "rep-new", _.t("_Nieuwe repertorisatie"), _.t("Maak een nieuwe repertorisatie aan (2)"), "rep-new", l, HRibbonBand.Priority.MEDIUM);
+				ffBand.addButton("FF", "rep-new", _.t("_Nieuwe repertorisatie ja"), _.t("Maak een nieuwe repertorisatie aan (2)"), "rep-new", l, HRibbonBand.Priority.MEDIUM);
 				ffBand.addMenu("Diversen", "rep-del", mn, HRibbonBand.Priority.MEDIUM);
 				ffBand.newGroup();
+
+				repBand.addButton("Repertorisatie", "rep-new", _.t("_Nieuwe repertorisatie"), _.t("Maak een nieuwe repertorisatie aan (2)"), "rep-new", l, HRibbonBand.Priority.LOW);
+				repBand.addButton("Repertorisatie", "rep-del", _.t("_Verwijder repertorisatie"), _.t("Verwijder de huidig geselecteerde repertorisatie"), "rep-del", l, HRibbonBand.Priority.LOW);
+				repBand.addButton("Repertorisatie", "print", _.t("_Print repertorisatie"), _.t("Druk het repertorisatie resultaat af"), "rep-print", l, HRibbonBand.Priority.LOW);
+				repBand.addButton("Patienten", "consult-open", _.t("_Open een\nconsult"), _.t("Open een consult."), "consult-open", l, HRibbonBand.Priority.LOW);
+				repBand.addButton("Patienten", "consult-new",  _.t("_Nieuw\nconsult"),  _.t("Maak een nieuw consult aan."), "consult-new", l, HRibbonBand.Priority.LOW);
+				repBand.addButton("Patienten", "consult-remove", _.t("_Verwijder\nconsult."), _.t("Verwijder een consult"), "consult-remove", l, HRibbonBand.Priority.LOW);
+				
 				
 				HRibbonTask repTask = new HRibbonTask("Repertorisation", repBand, ffBand);
 				

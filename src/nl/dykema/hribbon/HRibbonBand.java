@@ -26,7 +26,7 @@ public class HRibbonBand extends JPanel {
 	public interface Priority {
 		static final int TOP = 1;
 		static final int MEDIUM = 2;
-		static final int LOW = 2;
+		static final int LOW = 3;
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -35,6 +35,10 @@ public class HRibbonBand extends JPanel {
 	private JLabel l_title;
 	private JPanel p_buttons;
 	private JPanel p_current_group;
+	private int    _max_low_buttons_per_row = 2;
+	private int    _current_low_buttons_on_row = 0;
+	private int    _max_low_medium_rows = 3;
+	private int    _current_row = 0; 
 	private String s_resourceLocation;
 	
 	public String getTitle() {
@@ -53,6 +57,10 @@ public class HRibbonBand extends JPanel {
 	private void newGroupIfNecessary() {
 		if (p_current_group == null) {
 			newGroup();
+		} else {
+			if (_current_row >= _max_low_medium_rows) {
+				newGroup();
+			}
 		}
 	}
 	
@@ -76,10 +84,22 @@ public class HRibbonBand extends JPanel {
 			p_current_group.add(button, "growy");
 			finishGroup();
 			//button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+		} else if (priority == Priority.LOW) {
+			newGroupIfNecessary();
+			button.setText(null);
+			_current_low_buttons_on_row += 1;
+			if (_current_low_buttons_on_row  >= _max_low_buttons_per_row) {
+				p_current_group.add(button, "wrap");
+				_current_low_buttons_on_row = 0;
+				_current_row += 1;
+			} else {
+				p_current_group.add(button);
+			}
 		} else {
 			newGroupIfNecessary();
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "growx, wrap");
+			_current_row += 1;
 			//button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		button.setFocusable(false);
@@ -188,6 +208,8 @@ public class HRibbonBand extends JPanel {
 		finishGroup();
 		p_current_group = new JPanel();
 		p_current_group.setLayout(new MigLayout("insets 0, gap 0, fill"));
+		this._current_low_buttons_on_row = 0;
+		this._current_row = 0;
 	}
 	
 	public void finishGroup() {
@@ -195,6 +217,14 @@ public class HRibbonBand extends JPanel {
 			p_buttons.add(p_current_group, "growy");
 		}
 		p_current_group = null;
+	}
+	
+	public void setMaxLowButtonsPerRow(int max) {
+		this._max_low_buttons_per_row = max;
+	}
+	
+	public void setMaxLowMediumRows(int max) {
+		this._max_low_medium_rows = max;
 	}
 
 	public HRibbonBand(String title, String resourceLocation) {
