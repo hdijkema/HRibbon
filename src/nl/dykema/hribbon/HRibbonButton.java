@@ -20,12 +20,12 @@ public class HRibbonButton extends JButton {
 	}
 	
 	public HRibbonButton(String txt) {
-		super(txt);
+		super("<html><center>"+txt.replace('#', '\n').replace("\n", "<br />")+"</center></html>");
 		init();
 	}
 
 	public HRibbonButton(String txt, Icon icn) {
-		super(txt, icn);
+		super("<html><center>"+txt.replace('#', '\n').replace("\n", "<br />")+"</center></html>", icn);
 		init();
 	}
 }

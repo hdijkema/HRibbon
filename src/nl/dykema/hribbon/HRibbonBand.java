@@ -50,7 +50,7 @@ public class HRibbonBand extends JPanel {
 	public void setTitle(String s) {
 		s_title = s;
 		int size = (int) (l_title.getFont().getSize() * 0.9f);
-		System.out.println(size);
+		//System.out.println(size);
 		l_title.setText("<html><font size="+size+"pt>" + s_title + "</font></html>");
 		l_title.setHorizontalAlignment(SwingConstants.CENTER);
 		

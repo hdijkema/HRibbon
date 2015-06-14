@@ -17,7 +17,7 @@ public class CorrectDPILaf {
 
 			Object key = test.nextElement();  
 			Object value = UIManager.get( key );  
-			System.out.println(key + " = " + value);
+			//System.out.println(key + " = " + value);
 			if ( value instanceof Font ) {  
 				Font f = (Font) value;
 				UIManager.put( key, f.deriveFont(f.getSize2D() * factor) );  
