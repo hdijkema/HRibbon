@@ -128,12 +128,7 @@ public class Spike {
 				panel.add(edt, "growx, growy");
 				
 				p.add(panel, "growx, growy");
-				
-				_frame.add(p);
-				_frame.pack();
-				_frame.setSize(800,400);
-				_frame.setVisible(true);
-				
+
 				try {
 					HRibbonTitleBar.prepare(_frame, "nl.dykema.hribbon.resources");
 					HRibbonTitleBar.addButton("consult-new", "Dit is een consult new button", "consult-new", l);
@@ -147,7 +142,16 @@ public class Spike {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}				
+
+				_frame.add(p);
+				_frame.pack();
+				_frame.setSize(800,400);
+				_frame.setVisible(true);
+
+				
+				
+
 			}
 		});
 		

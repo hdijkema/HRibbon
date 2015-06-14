@@ -121,6 +121,11 @@ public class HRibbonBand extends JPanel {
 		addButtonMethod(b, priority);
 	}
 	
+	public void addMenu(HRibbonMenuButton b, final JPopupMenu m, int priority) {
+		b.setMenu(m);
+		addMenu(b, priority);
+	}
+	
 	public void addMenu(String label, String imageName, final JPopupMenu m, int priority) {
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
 		HRibbonMenuButton b = new HRibbonMenuButton(label, icn, m);
