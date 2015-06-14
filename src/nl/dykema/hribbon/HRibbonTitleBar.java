@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+import javax.swing.JSeparator;
 
 import net.miginfocom.swing.MigLayout;
 import nl.dykema.hribbon.HRibbonBand.Priority;
@@ -29,6 +30,7 @@ public class HRibbonTitleBar extends SubstanceTitlePane {
 	private static String 		s_resourceLocation;
 	private static boolean      _initialized = false;
 	private static int 			_nth = 0;
+	private static int			_seps = 0;
 	
 	public HRibbonTitleBar(JRootPane root, SubstanceRootPaneUI ui) {
         super(root, ui);
@@ -66,7 +68,7 @@ public class HRibbonTitleBar extends SubstanceTitlePane {
 		b.putClientProperty("substancelaf.internal.titlePane.extraComponentKind", SubstanceTitlePane.ExtraComponentKind.LEADING);
 		Rectangle r = _title.getBounds();
 		_nth += 1;
-		b.setBounds(r.x + _nth * r.height, r.y, r.height - 1, r.height - 1);
+		b.setBounds(r.x + _nth * r.height + _seps, r.y, r.height - 1, r.height - 1);
 		_title.add(b);
 	}
 
@@ -86,8 +88,17 @@ public class HRibbonTitleBar extends SubstanceTitlePane {
 		b.putClientProperty("substancelaf.internal.titlePane.extraComponentKind", SubstanceTitlePane.ExtraComponentKind.LEADING);
 		Rectangle r = _title.getBounds();
 		_nth += 1;
-		b.setBounds(r.x + _nth * r.height, r.y, r.height - 1, r.height - 1);
+		b.setBounds(r.x + _nth * r.height + _seps, r.y, r.height - 1, r.height - 1);
 		_title.add(b);
+	}
+	
+	public static void addSeparator() {
+		JSeparator sep = new JSeparator();
+		sep.putClientProperty("substancelaf.internal.titlePane.extraComponentKind", SubstanceTitlePane.ExtraComponentKind.LEADING);
+		Rectangle r = _title.getBounds();
+		int width = r.height / 3;
+		sep.setBounds(r.x + _nth * r.height + _seps, r.y, width, r.height - 1);
+		_seps += width;
 	}
 
 }

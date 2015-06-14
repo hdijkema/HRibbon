@@ -137,6 +137,7 @@ public class Spike {
 				try {
 					HRibbonTitleBar.prepare(_frame, "nl.dykema.hribbon.resources");
 					HRibbonTitleBar.addButton("consult-new", "Dit is een consult new button", "consult-new", l);
+					HRibbonTitleBar.addSeparator();
 					HRibbonTitleBar.addButton("beeindigen", _.t("Programma beëindigen"), "afsluiten", new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							_frame.setVisible(false);
