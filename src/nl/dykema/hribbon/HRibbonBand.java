@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -68,6 +69,7 @@ public class HRibbonBand extends JPanel {
 		if (priority == Priority.TOP) {
 			newGroup();
 			p_current_group.add(c, "growy");
+			this._current_row = this._max_low_medium_rows;
 			finishGroup();
 		} else {
 			newGroupIfNecessary();
@@ -76,14 +78,14 @@ public class HRibbonBand extends JPanel {
 		c.setFocusable(false);
 	}
 	
-	public void addButton(HRibbonButton button, int priority) {
+	private void addButtonMethod(AbstractButton button, int priority) {
 		if (priority == Priority.TOP) {
 		    button.setVerticalTextPosition(SwingConstants.BOTTOM);
 		    button.setHorizontalTextPosition(SwingConstants.CENTER);		
 			newGroup();
 			p_current_group.add(button, "growy");
+			this._current_row = this._max_low_medium_rows;
 			finishGroup();
-			//button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
 		} else if (priority == Priority.LOW) {
 			newGroupIfNecessary();
 			button.setText(null);
@@ -100,46 +102,28 @@ public class HRibbonBand extends JPanel {
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 			p_current_group.add(button, "growx, wrap");
 			_current_row += 1;
-			//button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		button.setFocusable(false);
 	}
+	
+	
+	public void addButton(HRibbonButton button, int priority) {
+		addButtonMethod(button, priority);
+	}
+	
 	
 	public void addToggleButton(HRibbonToggleButton button, int priority) {
-		if (priority == Priority.TOP) {
-		    button.setVerticalTextPosition(SwingConstants.BOTTOM);
-		    button.setHorizontalTextPosition(SwingConstants.CENTER);		
-			newGroup();
-			p_current_group.add(button, "growy");
-			finishGroup();
-			//button.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
-		} else {
-			newGroupIfNecessary();
-			button.setHorizontalAlignment(SwingConstants.LEFT);
-			p_current_group.add(button, "align left, growx, wrap");
-			//button.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		}
-		button.setFocusable(false);
+		addButtonMethod(button, priority);
 	}
 	
-	public void addMenu(HRibbonMenuButton b, final JPopupMenu m, int priority) {
-		if (priority == Priority.TOP) {
-			newGroup();
-			p_current_group.add(b, "growy");
-			finishGroup();
-			//b.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
-		} else {
-			newGroupIfNecessary();
-			p_current_group.add(b, "growx, wrap");
-			//b.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		}
-		b.setFocusable(false);
+	public void addMenu(HRibbonMenuButton b, int priority) {
+		addButtonMethod(b, priority);
 	}
 	
 	public void addMenu(String label, String imageName, final JPopupMenu m, int priority) {
 		ImageIcon icn = IconFactory.readIcon(s_resourceLocation, imageName, priority);
 		HRibbonMenuButton b = new HRibbonMenuButton(label, icn, m);
-		addMenu(b, m, priority);
+		addMenu(b, priority);
 	}
 	
 	public JToggleButton addToggleButton(String task, String imageName, String text, String tooltip, String command, ActionListener l, int priority) {
@@ -213,10 +197,17 @@ public class HRibbonBand extends JPanel {
 	}
 	
 	public void finishGroup() {
-		if (p_current_group != null) {
-			p_buttons.add(p_current_group, "growy");
+		if (this._current_low_buttons_on_row != 0 || this._current_row != 0) {
+			if (p_current_group != null) {
+				if (this._current_row < this._max_low_medium_rows) {
+					p_current_group.add(new JLabel("  "), "growx, growy, wrap");
+				}
+				p_buttons.add(p_current_group, "growy");
+			}
 		}
 		p_current_group = null;
+		this._current_low_buttons_on_row = 0;
+		this._current_row = 0;
 	}
 	
 	public void setMaxLowButtonsPerRow(int max) {
