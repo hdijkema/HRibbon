@@ -28,6 +28,7 @@ public class HRibbonBand extends JPanel {
 		static final int TOP = 1;
 		static final int MEDIUM = 2;
 		static final int LOW = 3;
+		static final int TITLEBAR = 3;
 	}
 	
 	private static final long serialVersionUID = 1L;

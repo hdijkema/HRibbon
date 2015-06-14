@@ -16,6 +16,7 @@ import net.miginfocom.swing.MigLayout;
 import nl.dykema.hribbon.HRibbon;
 import nl.dykema.hribbon.HRibbonBand;
 import nl.dykema.hribbon.HRibbonTask;
+import nl.dykema.hribbon.HRibbonTitleBar;
 
 import org.pushingpixels.substance.api.skin.SubstanceOffice2013LookAndFeel;
 
@@ -132,6 +133,20 @@ public class Spike {
 				_frame.pack();
 				_frame.setSize(800,400);
 				_frame.setVisible(true);
+				
+				try {
+					HRibbonTitleBar.prepare(_frame, "nl.dykema.hribbon.resources");
+					HRibbonTitleBar.addButton("consult-new", "Dit is een consult new button", "consult-new", l);
+					HRibbonTitleBar.addButton("beeindigen", _.t("Programma beëindigen"), "afsluiten", new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							_frame.setVisible(false);
+							System.exit(0);
+						}
+					});				
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
