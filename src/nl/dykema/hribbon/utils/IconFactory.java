@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import nl.dykema.hribbon.HRibbonBand;
@@ -14,6 +15,13 @@ public class IconFactory {
 
 	private interface Changer {
 		public String change(String path, String name);
+	}
+	
+	public static ImageIcon deriveIcon(ImageIcon src, int width_in_pt, int height_in_pt) {
+		int width_in_px = DeviceConverter.ptToScreenPx(width_in_pt);
+		int height_in_px = DeviceConverter.ptToScreenPx(height_in_pt);
+		BufferedImage img = BufferedImageBuilder.getScaledInstance(src.getImage(), width_in_px, height_in_px);
+		return new ImageIcon(img);
 	}
 
 	private static ImageIcon readIcon(String resourcePath, String name, File f, int width_in_pt, int height_in_pt) {
