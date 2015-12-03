@@ -75,6 +75,7 @@ public class HRibbonBand extends JPanel {
 		} else {
 			newGroupIfNecessary();
 			p_current_group.add(c, "growx, wrap");
+			_current_row += 1;
 		}
 		c.setFocusable(false);
 	}
